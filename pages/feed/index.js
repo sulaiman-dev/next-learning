@@ -1,11 +1,13 @@
 //this folder is related with nestjs linked clone app
+import Header from "../../components/feed/Header/Header"
 import { apisBasepath } from "../../config"
 
-export default function Developer({posts}) {
+export default function Developer({ posts }) {
     return (
-        <div>
-            <h2>Developer component</h2>
-        </div>
+            <div>
+                <h2>Home page</h2>
+            </div>
+
     )
 }
 
@@ -16,8 +18,7 @@ export async function getServerSideProps() {
     console.log('response', res)
     const data = await res.json()
     console.log('response', data)
-  
+
     // Pass data to the page via props
     return { props: { data } }
-  }
-  
+}
