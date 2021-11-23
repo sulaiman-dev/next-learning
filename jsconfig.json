@@ -1,0 +1,12 @@
+// The jsconfig baseUrl option is used to configure absolute imports 
+// for the Next.js app. Setting the base url to "." makes all javascript 
+// import statements (without a dot '.' prefix) relative to the root folder 
+// of the project, removing the need for long 
+// relative paths like import { userService } from '../../../services';.
+
+{
+    "compilerOptions": {
+        // make all imports without a dot '.' prefix relative to the base url
+        "baseUrl": "."
+    }
+}
