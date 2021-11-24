@@ -1,16 +1,16 @@
-// import '../styles/globals.css'
-// import Layout from '../components/shared/Layout/Layout'
+import '../styles/globals.css'
+import Layout from '../components/shared/Layout/Layout'
 
-// function MyApp({ Component, pageProps }) {
-//   return (
-//     <Layout>
-//       <Component {...pageProps} />
-//     </Layout>
-//   )
+function MyApp({ Component, pageProps }) {
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  )
 
-// }
+}
 
-// export default MyApp
+export default MyApp
 
 
 // working with jwt-auth flow from jasonwatmore.com blog post
@@ -18,70 +18,70 @@
 // The App component is the root component of the example Next.js app, 
 // it contains the outer html, main nav, and the component for the current page.
 
-import Head from 'next/head';
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
+// import Head from 'next/head';
+// import { useState, useEffect } from 'react';
+// import { useRouter } from 'next/router';
 
-import 'styles/globals.css';
-import { userService } from 'services';
-import { Nav } from 'components';
+// import 'styles/globals.css';
+// import { userService } from 'services';
+// import { Nav } from 'components';
 
-export default App;
+// export default App;
 
-function App({ Component, pageProps }) {
-    const router = useRouter();
-    const [authorized, setAuthorized] = useState(false);
+// function App({ Component, pageProps }) {
+//     const router = useRouter();
+//     const [authorized, setAuthorized] = useState(false);
 
-    useEffect(() => {
-        // run auth check on initial load
-        authCheck(router.asPath);
+//     useEffect(() => {
+//         // run auth check on initial load
+//         authCheck(router.asPath);
 
-        // set authorized to false to hide page content while changing routes
-        const hideContent = () => setAuthorized(false);
-        router.events.on('routeChangeStart', hideContent);
+//         // set authorized to false to hide page content while changing routes
+//         const hideContent = () => setAuthorized(false);
+//         router.events.on('routeChangeStart', hideContent);
 
-        // run auth check on route change
-        router.events.on('routeChangeComplete', authCheck)
+//         // run auth check on route change
+//         router.events.on('routeChangeComplete', authCheck)
 
-        // unsubscribe from events in useEffect return function
-        return () => {
-            router.events.off('routeChangeStart', hideContent);
-            router.events.off('routeChangeComplete', authCheck);
-        }
-    }, []);
+//         // unsubscribe from events in useEffect return function
+//         return () => {
+//             router.events.off('routeChangeStart', hideContent);
+//             router.events.off('routeChangeComplete', authCheck);
+//         }
+//     }, []);
 
-    function authCheck(url) {
-        // redirect to login page if accessing a private page and not logged in 
-        const publicPaths = ['/login'];
-        const path = url.split('?')[0];
-        if (!userService.userValue && !publicPaths.includes(path)) {
-            setAuthorized(false);
-            router.push({
-                pathname: '/login',
-                query: { returnUrl: router.asPath }
-            });
-        } else {
-            setAuthorized(true);
-        }
-    }
+//     function authCheck(url) {
+//         // redirect to login page if accessing a private page and not logged in 
+//         const publicPaths = ['/login'];
+//         const path = url.split('?')[0];
+//         if (!userService.userValue && !publicPaths.includes(path)) {
+//             setAuthorized(false);
+//             router.push({
+//                 pathname: '/login',
+//                 query: { returnUrl: router.asPath }
+//             });
+//         } else {
+//             setAuthorized(true);
+//         }
+//     }
 
-    return (
-        <>
-            <Head>
-                <title>Next.js 11 - JWT Authentication Example</title>
+//     return (
+//         <>
+//             <Head>
+//                 <title>Next.js 11 - JWT Authentication Example</title>
 
-                {/* bootstrap css */}
-                <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-            </Head>
+//                 {/* bootstrap css */}
+//                 <link href="//netdna.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
+//             </Head>
 
-            <div className="app-container bg-light">
-                <Nav />
-                <div className="container pt-4 pb-4">
-                    {authorized &&
-                        <Component {...pageProps} />
-                    }
-                </div>
-            </div>
-        </>
-    );
-}
+//             <div className="app-container bg-light">
+//                 <Nav />
+//                 <div className="container pt-4 pb-4">
+//                     {authorized &&
+//                         <Component {...pageProps} />
+//                     }
+//                 </div>
+//             </div>
+//         </>
+//     );
+// }
