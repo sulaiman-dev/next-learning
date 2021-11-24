@@ -70,10 +70,24 @@ import styles from '../styles/Home.module.css'
 // }
 
 // routing with pages => (Home page)
-export default function Home() {
-  return (
-    <div className={styles.container}>
-      <h3>Home Page</h3>
-    </div>
-  )
-}
+// export default function Home() {
+//   return (
+//     <div className={styles.container}>
+//       <h3>Home Page</h3>
+//     </div>
+//   )
+// }
+
+
+// checking withPrivateRoute HOC component.
+// routing with pages => (Home page)
+import withPrivateRoute from '../components/HOC/withPrivateRoute'
+
+function Home() {
+    return (
+      <div className={styles.container}>
+        <h3>Home Page</h3>
+      </div>
+    )
+  }
+  export default withPrivateRoute(Home)
